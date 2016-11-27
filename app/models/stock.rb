@@ -1,4 +1,7 @@
 class Stock < ActiveRecord::Base
+
+  has_many :uster_stocks
+  has_many :users, through: :user_stocks
 # need methods to look up prices, store prices, create new stock variables that return the stock object
   def self.find_by_ticker(ticker_symbol)
     where(ticker: ticker_symbol).first
