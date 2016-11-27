@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
   has_many :user_stocks
   has_many :stocks, through: :user_stocks
 
+  def full_name
+    return "#{first_name} #{last_name}".strip if (first_name || last_name)
+    "Anonymous"
+  end
+
   def can_add_stock?(ticker_symbol)
     # call this method under_stock_limit and make sure user is not over their limit of 10 stocks
     # and not already added to their portfolio
